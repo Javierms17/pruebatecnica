@@ -1,0 +1,9 @@
+package com.example.api.entity;
+
+import java.util.List;
+
+public class MesAnteriorModel {
+	List<UsoModel> usosModel;
+	int edificioId;
+	int totalAPagar;
+}

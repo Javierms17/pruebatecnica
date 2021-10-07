@@ -1,0 +1,15 @@
+package com.example.api.entity;
+
+public class Uso {
+
+	
+	private int hora;
+	private int dia;
+	private int mes;
+	private int anio;
+	private Cliente cliente;
+	private Edificio edificio;
+	
+	
+	
+}

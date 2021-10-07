@@ -1,0 +1,9 @@
+package com.example.api.rest;
+
+public class ClientRest {
+	
+	public String hello() {
+		return "hello world";
+	}
+
+}

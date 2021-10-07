@@ -1,0 +1,32 @@
+package com.example.api.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.api.daos.ClienteDao;
+import com.example.api.entity.Cliente;
+
+@RestController
+@RequestMapping("/")
+public class ClientRest {
+	
+	@Autowired
+	private ClienteDao clientDao;
+	
+	//@GetMapping//localhost:8080
+	@RequestMapping(value = "clientes", method=RequestMethod.GET)
+	public ResponseEntity<List<Cliente>> findAll(){
+		List<Cliente> clientes = clientDao.findAll();
+		for (Cliente cliente : clientes) {
+			
+		}
+		return ResponseEntity.ok(clientes);
+	}
+
+}

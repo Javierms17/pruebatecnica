@@ -1,0 +1,71 @@
+package com.example.api.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.api.daos.ClienteDao;
+import com.example.api.entity.Cliente;
+import com.example.api.entity.Uso;
+import com.example.api.entity.UsoModel;
+
+@RestController
+@RequestMapping("/")
+public class ClientRest {
+	
+	@Autowired
+	private ClienteDao clientDao;
+	
+	//@GetMapping//localhost:8080
+	@RequestMapping(value = "clientes", method=RequestMethod.GET)
+	public ResponseEntity<List<Cliente>> findAll(){
+		List<Cliente> clientes = clientDao.findAll();
+		for (Cliente cliente : clientes) {
+		System.out.println(cliente.getNombre());
+		}
+		return ResponseEntity.ok(clientes);
+	}
+	@RequestMapping(value = "entregatarjeta",method = RequestMethod.POST)
+	public ResponseEntity<String> entregaTarjeta(@RequestParam int idCliente,@RequestParam int numeroTarjeta ){
+		Cliente c= clientDao.getById(idCliente);
+		if(c!=null) {
+			if( c.getTarjetaEntregada()==false) {
+				c.setNumeroTarjeta(numeroTarjeta);
+				c.setTarjetaEntregada(true);
+				clientDao.save(c);
+				return ResponseEntity.ok("se registro la entrega de la tarjeta");
+			}else {
+				return ResponseEntity.ok("el usuario ya posee tarjeta");
+			}
+			
+		}else {
+			return ResponseEntity.ok("no existe el cliente");
+		}
+		
+		
+		
+	}
+	
+	@RequestMapping(value = "registrosdeuso",method = RequestMethod.POST)
+	public ResponseEntity<String> entregaTarjeta(@RequestParam List<UsoModel> usos){
+		if(usos !=null) {
+			for (UsoModel usoModel : usos) {
+				System.out.println("un uso el dia"+usoModel.getDia());
+			}
+			return ResponseEntity.ok("registro exitoso");
+		}else {
+			return	ResponseEntity.ok("hubo un error en los registros de uso");
+		}
+	
+		
+	
+	}
+	
+
+}

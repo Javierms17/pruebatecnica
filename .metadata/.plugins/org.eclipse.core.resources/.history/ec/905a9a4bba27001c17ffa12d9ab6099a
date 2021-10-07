@@ -1,0 +1,29 @@
+package com.example.api.entity;
+
+import java.util.List;
+
+public class MesAnteriorModel {
+	List<UsoModel> usosModel;
+	int edificioId;
+	float totalAPagar;
+	
+	public List<UsoModel> getUsosModel() {
+		return usosModel;
+	}
+	public void setUsosModel(List<UsoModel> usosModel) {
+		this.usosModel = usosModel;
+	}
+	public int getEdificioId() {
+		return edificioId;
+	}
+	public void setEdificioId(int edificioId) {
+		this.edificioId = edificioId;
+	}
+	public float getTotalAPagar() {
+		return totalAPagar;
+	}
+	public void setTotalAPagar(int totalAPagar) {
+		this.totalAPagar = totalAPagar;
+	}
+	
+}

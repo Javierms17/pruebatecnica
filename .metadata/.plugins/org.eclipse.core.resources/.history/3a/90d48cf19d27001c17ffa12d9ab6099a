@@ -1,0 +1,8 @@
+package com.example.api.entity;
+
+public class Uso {
+
+	private int dia;
+	private int mes;
+	private int anio;
+}

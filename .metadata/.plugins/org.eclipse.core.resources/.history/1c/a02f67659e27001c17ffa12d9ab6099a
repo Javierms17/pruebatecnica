@@ -1,0 +1,26 @@
+package com.example.api.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Uso {
+
+	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	private int hora;
+	private int dia;
+	private int mes;
+	private int anio;
+	private Cliente cliente;
+	private Edificio edificio;
+	
+	
+	
+	
+}
