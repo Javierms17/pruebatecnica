@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -75,16 +74,16 @@ public class ClientRest {
 	public ResponseEntity<String> entregaTarjeta(@RequestBody List<UsoModel> usos){
 		if(usos !=null) {
 			for (UsoModel usoModel : usos) {
-			
 				
 				Edificio e= edificioDao.getById(usoModel.getIdEdificio());
-				if (!edificioDao.existsById(usoModel.getIdEdificio())) {
+				
+			
+				if (e.getCiudad()==null) {
 				
 					return ResponseEntity.ok("no existe el edificio con id"+usoModel.getIdEdificio());
 				}
-			
 				Cliente c= clientDao.getById(usoModel.getIdCliente());
-				if (!clientDao.existsById(usoModel.getIdCliente())) {
+				if (c==null) {
 				return	ResponseEntity.ok("no existe el cliente con id"+usoModel.getIdCliente());
 				}
 				
@@ -96,9 +95,8 @@ public class ClientRest {
 				u.setMes(usoModel.getMes());;
 				u.setCliente(c);
 				u.setEdificio(e);
-				u.setMaquina(usoModel.getMaquina());
 				usoDao.save(u);
-		
+			
 			}
 			return ResponseEntity.ok("registro exitoso");
 		}else {

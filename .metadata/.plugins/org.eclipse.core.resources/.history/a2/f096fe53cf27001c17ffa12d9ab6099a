@@ -87,7 +87,7 @@ public class ClientRest {
 				if (!clientDao.existsById(usoModel.getIdCliente())) {
 				return	ResponseEntity.ok("no existe el cliente con id"+usoModel.getIdCliente());
 				}
-				
+		/*		
 				System.out.println("se registra el uso para clienteid :"+c.getId());
 				Uso u =new Uso();
 				u.setAnio(usoModel.getAnio());
@@ -98,7 +98,7 @@ public class ClientRest {
 				u.setEdificio(e);
 				u.setMaquina(usoModel.getMaquina());
 				usoDao.save(u);
-		
+			*/
 			}
 			return ResponseEntity.ok("registro exitoso");
 		}else {

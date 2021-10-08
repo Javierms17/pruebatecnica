@@ -10,12 +10,6 @@ public class UsoModel {
 	private int idEdificio;
 	private int maquina;
 	
-	public int getMaquina() {
-		return maquina;
-	}
-	public void setMaquina(int maquina) {
-		this.maquina = maquina;
-	}
 	public UsoModel() {
 		super();
 	}

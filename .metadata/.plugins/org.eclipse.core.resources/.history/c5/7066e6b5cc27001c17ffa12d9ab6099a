@@ -22,12 +22,6 @@ public class Uso {
 	private int anio;
 	private int maquina;
 	
-	public int getMaquina() {
-		return maquina;
-	}
-	public void setMaquina(int maquina) {
-		this.maquina = maquina;
-	}
 	@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Cliente cliente;
 	@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

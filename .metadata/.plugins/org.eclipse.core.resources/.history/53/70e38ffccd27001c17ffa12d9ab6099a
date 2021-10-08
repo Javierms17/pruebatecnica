@@ -75,16 +75,15 @@ public class ClientRest {
 	public ResponseEntity<String> entregaTarjeta(@RequestBody List<UsoModel> usos){
 		if(usos !=null) {
 			for (UsoModel usoModel : usos) {
-			
-				
+				Optional<Edificio> e1 = edificioDao.findById(usoModel.getIdEdificio());
 				Edificio e= edificioDao.getById(usoModel.getIdEdificio());
-				if (!edificioDao.existsById(usoModel.getIdEdificio())) {
+				if (e1==null) {
 				
 					return ResponseEntity.ok("no existe el edificio con id"+usoModel.getIdEdificio());
 				}
-			
+				Optional<Cliente> c1 =clientDao.findById(usoModel.getIdCliente());
 				Cliente c= clientDao.getById(usoModel.getIdCliente());
-				if (!clientDao.existsById(usoModel.getIdCliente())) {
+				if (c1==null) {
 				return	ResponseEntity.ok("no existe el cliente con id"+usoModel.getIdCliente());
 				}
 				
@@ -98,7 +97,7 @@ public class ClientRest {
 				u.setEdificio(e);
 				u.setMaquina(usoModel.getMaquina());
 				usoDao.save(u);
-		
+			
 			}
 			return ResponseEntity.ok("registro exitoso");
 		}else {
